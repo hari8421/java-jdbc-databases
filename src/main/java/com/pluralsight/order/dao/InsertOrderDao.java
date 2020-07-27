@@ -50,7 +50,7 @@ ps.executeUpdate();
 con.rollback();
                     } else {
 
-                        orderId=result.getInt(1);
+                        orderId=result.getLong(1);
                         for (OrderDetailDto orderDetailDto : orderDto.getOrderDetail()) {
                             orderDetailDto.setOrderId(orderId);
 
