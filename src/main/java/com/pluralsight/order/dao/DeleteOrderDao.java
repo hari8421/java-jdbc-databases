@@ -52,7 +52,7 @@ public class DeleteOrderDao {
         String ids = null;
         StringJoiner sj=new StringJoiner(",");
         for(Long s:orderIds){
-            sj.add(s.toString());
+            sj.add("?");
         }
         ids=sj.toString();
         return "DELETE FROM orders o WHERE o.order_id IN (" + ids + ")";
