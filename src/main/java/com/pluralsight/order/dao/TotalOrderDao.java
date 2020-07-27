@@ -33,7 +33,7 @@ public class TotalOrderDao {
         try (Connection con = database.getConnection();
              CallableStatement cs = createCallableStatement(con, paramsDto.getCustomerId())
         ) {
-            result=cs.getBigDecimal();
+            result=cs.getBigDecimal(1);
         } catch (SQLException ex) {
             ExceptionHandler.handleException(ex);
         }
