@@ -52,7 +52,7 @@ public class GetOrderDao {
 
         return orderDto;
     }
-}
+
     /**
      * Creates a PreparedStatement object to get an order
      * @param con Connnection object
