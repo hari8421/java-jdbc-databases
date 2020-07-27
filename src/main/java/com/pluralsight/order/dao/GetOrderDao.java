@@ -37,16 +37,15 @@ public class GetOrderDao {
              PreparedStatement ps = createPreparedStatement(con, paramsDto.getOrderId());
              ResultSet rs = createResultSet(ps);
 
-
         ) {
-            
+
         } catch (SQLException ex) {
             ExceptionHandler.handleException(ex);
         }
 
         return orderDto;
     }
-}
+
     /**
      * Creates a PreparedStatement object to get an order
      * @param con Connnection object
