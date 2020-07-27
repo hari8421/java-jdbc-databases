@@ -37,7 +37,7 @@ public class TotalOrderDao {
             try{
                 ResultSet rs=cs.getResultSet();
                 if(rs!=null&&rs.next()){
-                    result=cs.getBigDecimal(1);
+                    result=rs.getBigDecimal(1);
                 }
             }catch (SQLException ex) {
                 ExceptionHandler.handleException(ex);
