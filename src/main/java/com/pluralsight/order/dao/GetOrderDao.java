@@ -17,7 +17,7 @@ public class GetOrderDao {
     private String query = "SELECT * FROM orders o WHERE o.order_id = ?";
     private Database database;
 
-    /**
+    /**getOrderById
      * Constructor
      * @param database Database object
      */
@@ -33,18 +33,26 @@ public class GetOrderDao {
     public OrderDto getOrderById(ParamsDto paramsDto) {
         OrderDto orderDto = null;
 
-        try (Connection con = null;
+        try (Connection con = database.getConnection();
              PreparedStatement ps = createPreparedStatement(con, paramsDto.getOrderId());
-             ResultSet rs = createResultSet(ps)
-        ) {
+             ResultSet rs = createResultSet(ps);
 
+
+        ) {
+            while(rs.next()){
+
+                orderDto.setCustomerId(rs.getLong(" order_customer_id"));
+                orderDto.setDate(rs.getDate("order_date"));
+                orderDto.setOrderId(rs.getLong("order_id"));
+                orderDto.setStatus(rs.getString("order_status"));
+            }
         } catch (SQLException ex) {
             ExceptionHandler.handleException(ex);
         }
 
         return orderDto;
     }
-
+}
     /**
      * Creates a PreparedStatement object to get an order
      * @param con Connnection object
@@ -53,8 +61,9 @@ public class GetOrderDao {
      * @throws SQLException In case of an error
      */
     private PreparedStatement createPreparedStatement(Connection con, long orderId) throws SQLException {
-
-        return null;
+        PreparedStatement psmt=con.prepareStatement(query);
+        psmt.setLong(1,orderId);
+        return psmt;
     }
 
     /**
@@ -64,6 +73,6 @@ public class GetOrderDao {
      * @throws SQLException In case of an error
      */
     private ResultSet createResultSet(PreparedStatement ps) throws SQLException {
-        return null;
+        return ps.executeQuery();
     }
 }
