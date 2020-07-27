@@ -93,7 +93,7 @@ con.rollback();
         ps.setLong(1,orderDto.getCustomerId());
         ps.setTimestamp(2, new java.sql.Timestamp(time));
         ps.setString(3, String.valueOf(OrderStatus.CREATED));
-        return null;
+        return ps;
     }
 
     /**
