@@ -56,7 +56,8 @@ con.rollback();
 
                             try (PreparedStatement detailsPS =
                                          createOrderDetailPreparedStatement(con, orderDetailDto)) {
-                                if(detailsPS.executeUpdate()!=1){
+                                int res=detailsPS.executeUpdate();
+                                if(res!=1){
                                     con.rollback();
                                 }else{
                                     orderId=-1;
